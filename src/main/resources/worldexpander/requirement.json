@@ -1,0 +1,22 @@
+{
+  "levels": [
+    {
+      "max_radius": 64,
+      "cost": [
+        { "item": "minecraft:iron_ingot", "count": 8 }
+      ]
+    },
+    {
+      "max_radius": 256,
+      "cost": [
+        { "item": "minecraft:gold_ingot", "count": 6 }
+      ]
+    },
+    {
+      "max_radius": 512,
+      "cost": [
+        { "item": "minecraft:diamond", "count": 3 }
+      ]
+    }
+  ]
+}
