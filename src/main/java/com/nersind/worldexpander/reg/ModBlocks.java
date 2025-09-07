@@ -21,9 +21,15 @@ public class ModBlocks {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, WorldExpanderMod.MODID);
 
-    public static final RegistryObject<Block> WORLD_EXPANDER = registerBlock(
-            "world_expander",
-            () -> new WorldExpanderBlock(BlockBehaviour.Properties.of(Material.METAL).strength(4f).noOcclusion())
+public static final RegistryObject<Block> WORLD_EXPANDER = registerBlock(
+        "world_expander",
+        () -> new WorldExpanderBlock(
+                BlockBehaviour.Properties.of()
+                        .mapColor(MapColor.METAL)
+                        .strength(4f)
+                        .requiresCorrectToolForDrops()
+                        .noOcclusion()
+        )
     );
 
     private static RegistryObject<Block> registerBlock(String name, Supplier<Block> block) {
