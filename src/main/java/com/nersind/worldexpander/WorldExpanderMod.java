@@ -1,9 +1,9 @@
 package com.nersind.worldexpander;
 
-import com.nersind.worldexpander.registry.ModBlocks;
-import com.nersind.worldexpander.registry.ModBlockEntities;
-import com.nersind.worldexpander.registry.ModMenus;
-import net.minecraftforge.api.distmarker.Dist;
+import com.nersind.worldexpander.reg.ModBlocks;
+import com.nersind.worldexpander.reg.ModBlockEntities;
+import com.nersind.worldexpander.reg.ModMenus;
+import com.nersind.worldexpander.json.ExpansionRequirements;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.IEventBus;

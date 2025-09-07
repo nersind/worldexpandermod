@@ -1,4 +1,4 @@
-package com.nersind.worldexpander.registry;
+package com.nersind.worldexpander.reg;
 
 import com.nersind.worldexpander.WorldExpanderMod;
 import com.nersind.worldexpander.block.WorldExpanderBlock;
@@ -14,7 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-public class WorldExpanderBlocks {
+public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, WorldExpanderMod.MODID);
 

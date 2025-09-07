@@ -1,4 +1,4 @@
-package com.nersind.worldexpander.registry;
+package com.nersind.worldexpander.reg;
 
 import com.nersind.worldexpander.WorldExpanderMod;
 import com.nersind.worldexpander.blockentity.WorldExpanderMenu;
