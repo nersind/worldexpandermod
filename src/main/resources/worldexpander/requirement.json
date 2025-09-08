@@ -1,21 +1,63 @@
 {
   "levels": [
     {
-      "max_radius": 64,
+      "max_radius": 80,
       "cost": [
         { "item": "minecraft:iron_ingot", "count": 8 }
       ]
     },
     {
-      "max_radius": 256,
+      "max_radius": 96,
+      "cost": [
+        { "item": "minecraft:iron_ingot", "count": 12 }
+      ]
+    },
+    {
+      "max_radius": 112,
       "cost": [
         { "item": "minecraft:gold_ingot", "count": 6 }
       ]
     },
     {
-      "max_radius": 512,
+      "max_radius": 128,
       "cost": [
-        { "item": "minecraft:diamond", "count": 3 }
+        { "item": "minecraft:gold_ingot", "count": 12 }
+      ]
+    },
+    {
+      "max_radius": 144,
+      "cost": [
+        { "item": "minecraft:diamond", "count": 4 }
+      ]
+    },
+    {
+      "max_radius": 160,
+      "cost": [
+        { "item": "minecraft:diamond", "count": 8 }
+      ]
+    },
+    {
+      "max_radius": 176,
+      "cost": [
+        { "item": "minecraft:emerald", "count": 6 }
+      ]
+    },
+    {
+      "max_radius": 192,
+      "cost": [
+        { "item": "minecraft:emerald", "count": 12 }
+      ]
+    },
+    {
+      "max_radius": 208,
+      "cost": [
+        { "item": "minecraft:netherite_ingot", "count": 1 }
+      ]
+    },
+    {
+      "max_radius": 224,
+      "cost": [
+        { "item": "minecraft:netherite_ingot", "count": 2 }
       ]
     }
   ]

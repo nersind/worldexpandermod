@@ -14,8 +14,8 @@ public class WorldExpanderScreen extends AbstractContainerScreen<WorldExpanderMe
 
     public WorldExpanderScreen(WorldExpanderMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
-        this.imageWidth = 176;
-        this.imageHeight = 166;
+        this.imageWidth = 200;
+        this.imageHeight = 150;
     }
 
     @Override
