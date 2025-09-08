@@ -35,7 +35,6 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         return inventory;
     }
 
-    // ---------- GUI ----------
     @Override
     public Component getDisplayName() {
         return Component.literal("World Expander");
@@ -47,7 +46,6 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         return new WorldExpanderMenu(id, playerInv, this);
     }
 
-    // ---------- Сохранение ----------
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
@@ -62,12 +60,11 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         }
     }
 
-    // ---------- Логика ----------
     public static void tick(Level level, BlockPos pos, BlockState state, WorldExpanderBlockEntity be) {
         if (level.isClientSide) return;
 
         WorldBorder border = level.getWorldBorder();
-        double radius = border.getSize(); // радиус в блоках
+        double radius = border.getSize();
 
         LevelRequirement req = ExpansionRequirements.getForRadius(radius);
         if (req == null) return;
@@ -80,5 +77,18 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         }
     }
 
-    private static boolean hasRequiredItems(WorldExpanderBlockEntity be, LevelRequirement req) {
+    private boolean hasRequiredItems(Requirement req) {
         for (Requirement r : req.cost) {
+            int count = 0;
+            for (int i = 0; i < items.getSlots(); i++) {
+                if (items.getStackInSlot(i).is(r.item)) {
+                    count += items.getStackInSlot(i).getCount();
+            }
+        }
+        if (count < r.count) {
+            return false;
+        }
+    }
+    return true;
+}
+
