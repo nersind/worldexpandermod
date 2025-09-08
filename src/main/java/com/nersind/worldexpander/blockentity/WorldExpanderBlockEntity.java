@@ -90,5 +90,23 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         }
     }
     return true;
+
+    private void consumeItems(Requirement req) {
+        for (Requirement r : req.cost) {
+            int remaining = r.count;
+            for (int i = 0; i < items.getSlots(); i++) {
+                ItemStack stack = items.getStackInSlot(i);
+                if (stack.is(r.item)) {
+                    int taken = Math.min(stack.getCount(), remaining);
+                    stack.shrink(taken);
+                    remaining -= taken;
+                    if (remaining <= 0) {
+                        break; // всё, нужное количество забрали
+                }
+            }
+        }
+    }
+    setChanged(); // помечаем BlockEntity как изменённый
 }
+
 

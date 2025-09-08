@@ -48,4 +48,30 @@ public class WorldExpanderMenu extends AbstractContainerMenu {
     public boolean stillValid(Player player) {
         return true;
     }
+    @Override
+    public ItemStack quickMoveStack(Player player, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack stack = slot.getItem();
+            itemstack = stack.copy();
+
+            if (index < 9) { // слоты блока
+                if (!this.moveItemStackTo(stack, 9, this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else { // слоты игрока
+                if (!this.moveItemStackTo(stack, 0, 9, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if (stack.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+        }
+        return itemstack;
+    }
 }
