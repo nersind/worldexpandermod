@@ -77,7 +77,7 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         }
     }
 
-    private boolean hasRequiredItems(WorldExpanderBlockEntity items, LevelRequirement req) {
+    private static boolean hasRequiredItems(WorldExpanderBlockEntity items, LevelRequirement req) {
         for (Requirement r : req.cost) {
             int count = 0;
             for (int i = 0; i < items.getInventory().getSlots(); i++) {
@@ -92,7 +92,7 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         return true;
     }
 
-    private void consumeItems(WorldExpanderBlockEntity items, LevelRequirement req) {
+    private static void consumeItems(WorldExpanderBlockEntity items, LevelRequirement req) {
         for (Requirement r : req.cost) {
             int remaining = r.count;
             for (int i = 0; i < items.getInventory().getSlots(); i++) {
