@@ -1,0 +1,26 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+Java: 11.0.14.1, JVM: 11.0.14.1+1-LTS (Microsoft), Arch: amd64
+
+> Task :compileJava
+/workspaces/worldexpandermod/src/main/java/com/nersind/worldexpander/blockentity/WorldExpanderBlockEntity.java:84: error: reached end of file while parsing
+        for (Requirement r : req.cost) {
+                                        ^
+1 error
+
+> Task :compileJava FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --info option to get more log output.
+> Run with --scan to get full insights.
+
+BUILD FAILED in 19s
+1 actionable task: 1 executed
