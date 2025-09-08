@@ -77,12 +77,12 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         }
     }
 
-    private boolean hasRequiredItems(Requirement req) {
+    private boolean hasRequiredItems(WorldExpanderBlockEntity items, Requirement req) {
         for (Requirement r : req.cost) {
             int count = 0;
-            for (int i = 0; i < items.getSlots(); i++) {
-                if (items.getStackInSlot(i).is(r.item)) {
-                    count += items.getStackInSlot(i).getCount();
+            for (int i = 0; i < items.getInventory().getSlots(); i++) {
+                if (items.getInventory().getStackInSlot(i).is(r.item)) {
+                    count += items.getInventory().getStackInSlot(i).getCount();
             }
         }
         if (count < r.count) {
@@ -91,11 +91,11 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
     }
     return true;
 
-    private void consumeItems(Requirement req) {
+    private void consumeItems(WorldExpanderBlockEntity items, Requirement req) {
         for (Requirement r : req.cost) {
             int remaining = r.count;
-            for (int i = 0; i < items.getSlots(); i++) {
-                ItemStack stack = items.getStackInSlot(i);
+            for (int i = 0; i < items.getInventory().getSlots(); i++) {
+                ItemStack stack = items.getInventory().getStackInSlot(i);
                 if (stack.is(r.item)) {
                     int taken = Math.min(stack.getCount(), remaining);
                     stack.shrink(taken);
@@ -107,6 +107,6 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         }
     }
     setChanged(); // помечаем BlockEntity как изменённый
+    }
 }
-
 
