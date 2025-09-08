@@ -1,29 +1,27 @@
 package com.nersind.worldexpander.json;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Map;
 
 public class ExpansionRequirements {
-    private static final Gson GSON = new Gson();
     private static RequirementsData data;
 
     public static class Requirement {
-        public String item;
+        public Holder<Item> item;
         public int count;
 
         public ItemStack toStack() {
-            Item i = BuiltInRegistries.ITEM.get(new ResourceLocation(item));
-            return new ItemStack(i, count);
+            return new ItemStack(item, count);
         }
     }
 
@@ -35,6 +33,14 @@ public class ExpansionRequirements {
     public static class RequirementsData {
         public List<LevelRequirement> levels;
     }
+
+    private static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(Holder.class, (JsonDeserializer<Holder<Item>>) (json, typeOfT, context) -> {
+                ResourceLocation id = new ResourceLocation(json.getAsString());
+                return BuiltInRegistries.ITEM.getHolder(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Unknown item: " + id));
+            })
+            .create();
 
     public static void load(MinecraftServer server) {
         try {
