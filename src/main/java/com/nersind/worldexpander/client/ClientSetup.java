@@ -1,6 +1,6 @@
 package com.nersind.worldexpander.client;
 
-import com.nersind.worldexpander.registry.ModMenus;
+import com.nersind.worldexpander.reg.ModMenus;
 import com.nersind.worldexpander.client.WorldExpanderScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

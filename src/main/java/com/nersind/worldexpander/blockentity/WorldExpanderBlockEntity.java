@@ -1,6 +1,6 @@
 package com.nersind.worldexpander.blockentity;
 
-import com.nersind.worldexpander.registry.ModBlockEntities;
+import com.nersind.worldexpander.reg.ModBlockEntities;
 import com.nersind.worldexpander.json.ExpansionRequirements;
 import com.nersind.worldexpander.json.ExpansionRequirements.LevelRequirement;
 import com.nersind.worldexpander.json.ExpansionRequirements.Requirement;

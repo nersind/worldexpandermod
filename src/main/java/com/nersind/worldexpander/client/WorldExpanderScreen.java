@@ -1,4 +1,4 @@
-package com.nersind.worldexpander.client.screen;
+package com.nersind.worldexpander.client;
 
 import com.nersind.worldexpander.blockentity.WorldExpanderMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
