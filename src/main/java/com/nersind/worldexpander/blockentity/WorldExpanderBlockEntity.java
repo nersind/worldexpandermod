@@ -81,7 +81,7 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
         for (Requirement r : req.cost) {
             int count = 0;
             for (int i = 0; i < items.getInventory().getSlots(); i++) {
-                if (items.getInventory().getStackInSlot(i).is(r.huitem)) {
+                if (items.getInventory().getStackInSlot(i).is(r.item)) {
                     count += items.getInventory().getStackInSlot(i).getCount();
                 }
             }
@@ -97,7 +97,7 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
             int remaining = r.count;
             for (int i = 0; i < items.getInventory().getSlots(); i++) {
                 ItemStack stack = items.getInventory().getStackInSlot(i);
-                if (stack.is(r.huitem)) {
+                if (stack.is(r.item)) {
                     int taken = Math.min(stack.getCount(), remaining);
                     stack.shrink(taken);
                     remaining -= taken;

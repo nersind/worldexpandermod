@@ -4,6 +4,8 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.Item;
@@ -37,7 +39,8 @@ public class ExpansionRequirements {
     private static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(Holder.class, (JsonDeserializer<Holder<Item>>) (json, typeOfT, context) -> {
                 ResourceLocation id = new ResourceLocation(json.getAsString());
-                return BuiltInRegistries.ITEM.getHolder(id)
+                ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id);
+                return BuiltInRegistries.ITEM.getHolder(key)
                         .orElseThrow(() -> new IllegalArgumentException("Unknown item: " + id));
             })
             .create();
