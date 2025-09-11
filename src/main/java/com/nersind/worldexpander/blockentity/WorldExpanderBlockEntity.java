@@ -4,6 +4,7 @@ import com.nersind.worldexpander.reg.ModBlockEntities;
 import com.nersind.worldexpander.json.ExpansionRequirements;
 import com.nersind.worldexpander.json.ExpansionRequirements.LevelRequirement;
 import com.nersind.worldexpander.json.ExpansionRequirements.Requirement;
+import com.nersind.worldexpander.util.ChatHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -62,6 +63,7 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
 
     public static void tick(Level level, BlockPos pos, BlockState state, WorldExpanderBlockEntity be) {
         if (level.isClientSide) return;
+        if (level.getGameTime() % 20 != 0) return;
 
         WorldBorder border = level.getWorldBorder();
         double radius = border.getSize();
@@ -71,10 +73,11 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
 
         if (hasRequiredItems(be, req)) {
             consumeItems(be, req);
-            border.setSize(border.getSize() + 16); // +16 блоков к радиусу
+            border.setSize(border.getSize() + 16);
+            ChatHelper.SendToAll(level, "гойда");
             level.sendBlockUpdated(pos, state, state, 3);
             be.setChanged();
-        }
+        } else {ChatHelper.SendToAll(level, "перемога");}
     }
 
     private static boolean hasRequiredItems(WorldExpanderBlockEntity items, LevelRequirement req) {
@@ -85,7 +88,12 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
                     count += items.getInventory().getStackInSlot(i).getCount();
                 }
             }
+            ChatHelper.sendToAll(level,
+                "Найдено " + count + " из " + r.count + " " +
+                r.item.builtInRegistryHolder().key().location()
+            );
         if (count < r.count) {
+            ChatHelper.sendToAll("хууух дружок пирожок ты влип")
             return false;
             }
         }
@@ -101,12 +109,16 @@ public class WorldExpanderBlockEntity extends BlockEntity implements MenuProvide
                     int taken = Math.min(stack.getCount(), remaining);
                     stack.shrink(taken);
                     remaining -= taken;
+                    ChatHelper.sendToAll(level,
+                    "Спизжено " + taken + " " +
+                    r.item.builtInRegistryHolder().key().location()
+                );
                     if (remaining <= 0) {
-                        break; // всё, нужное количество забрали
+                        break;
                 }
             }
         }
     }
-    items.setChanged(); // помечаем BlockEntity как изменённый
+    items.setChanged();
     }
 }
