@@ -52,9 +52,12 @@ public class WorldExpanderBlock extends BaseEntityBlock implements EntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
-        Level lol, BlockState prostate, BlockEntityType<T> type) {
-        return !lol.isClientSide()
-        ? createTickerHelper(type, ModBlockEntities.WORLD_EXPANDER.get(), WorldExpanderBlockEntity::tick)
-        :null;
-    }
+        Level level, BlockState state, BlockEntityType<T> type) {
+    return (lvl, pos, st, be) -> {
+        if (be instanceof WorldExpanderBlockEntity expander) {
+            WorldExpanderBlockEntity.tick(lvl, pos, st, expander);
+        }
+    };
+}
+
 }
