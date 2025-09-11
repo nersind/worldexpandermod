@@ -1,4 +1,4 @@
-package com.nersind.worldexpander.util
+package com.nersind.worldexpander.util;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
